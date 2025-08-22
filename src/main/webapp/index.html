@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>mnmlst. Minimalist Landing Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #181921 0%, #24263a 100%);
+      --header-gradient: linear-gradient(90deg, #a28cff 0%, #fae07c 100%);
+      --accent-purple: #7b68ee;
+      --accent-coral: #ff7b80;
+      --accent-aqua: #35cde3;
+      --accent-yellow: #f6be3c;
+      --title-dark: #fafafa;
+      --text-muted: #aaaac5;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      max-width: 100vw;
+      overflow-x: hidden;
+      background: var(--bg-gradient);
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
+    }
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: stretch;
+    }
+    .nav {
+      width: 100%;
+      padding: 40px 60px 0 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: transparent;
+    }
+    .logo {
+      font-weight: 800;
+      font-size: 2.3rem;
+      letter-spacing: 1.5px;
+      background: var(--header-gradient);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-fill-color: transparent;
+    }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 1.11rem;
+      letter-spacing: 0.5px;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+      transition: color .3s, border-color .3s;
+    }
+    .nav-links a:hover {
+      color: var(--accent-yellow);
+      border-bottom: 2px solid var(--accent-yellow);
+    }
+    .menu-icon {
+      display: block;
+      font-size: 2rem;
+      color: #aa9dfc;
+      cursor: pointer;
+      flex-shrink: 0;
+      z-index: 9999;
+    }
+    @media (max-width: 900px) {
+      .menu-icon {
+        display: block;
+        margin-left: 18px;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+    .main-content {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      width: 100%;
+      max-width: 100%;
+      padding: 0 60px;
+      box-sizing: border-box;
+      min-height: 76vh;
+      margin-top: 32px;
+      position: relative;
+    }
+    .main-left {
+      flex: 0 0 370px;
+      max-width: 370px;
+      padding-top: 54px;
+    }
+    .main-left p {
+      color: var(--text-muted);
+      font-size: 1.17rem;
+      margin-bottom: 22px;
+      line-height: 1.65;
+      border-left: 4px solid var(--accent-purple);
+      padding-left: 18px;
+    }
+    .main-left a {
+      font-weight: 800;
+      font-size: 1.09rem;
+      color: var(--accent-yellow);
+      text-decoration: none;
+      background: #23243a;
+      padding: 7px 18px;
+      border-radius: 100px;
+      border: 1.5px solid var(--accent-yellow);
+      box-shadow: 0 4px 18px #2a243791;
+      transition: background 0.18s, color 0.18s, border 0.18s;
+      margin-top: 7px;
+      display: inline-block;
+    }
+    .main-left a:hover {
+      background: var(--accent-yellow);
+      color: #23243a;
+      border-color: var(--accent-purple);
+    }
+    .main-right {
+      position: relative;
+      flex: 1 1 0;
+      min-width: 500px;
+      height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 38px;
+    }
+    .circle-bg {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 390px;
+      height: 390px;
+      background: radial-gradient(circle, #32343d 70%, var(--accent-yellow) 100%);
+      border-radius: 50%;
+      z-index: 1;
+      box-shadow: 0 0 80px 0 #37384899, 0 8px 30px 0 #43444e33;
+      filter: blur(0.5px);
+      transform: translate(-50%, -50%);
+      max-width: 100%;
+      overflow: hidden;
+    }
+    .circle-bg::after {
+      content: '';
+      position: absolute;
+      left: 60px; top: 55px;
+      width: 90px; height: 90px;
+      opacity: .10; border-radius: 50%;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .main-img {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 400px;
+      max-width: 80vw;
+      height: 400px;
+      max-height: 80vw;
+      z-index: 3;
+      border-radius: 500%;
+      object-fit: cover;
+      background: transparent;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 10px 40px 0 #23243a40;
+    }
+    .tagline {
+      position: absolute;
+      left: 70%;
+      top: 57%;
+      transform: translate(-50%, -50%);
+      font-size: 3.6rem;
+      font-weight: 900;
+      letter-spacing: -.7px;
+      background: var(--header-gradient);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      max-width: 340px;
+      z-index: 4;
+      line-height: 1.04;
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
+      text-shadow: 0 8px 28px #30293d38;
+      user-select: none;
+      pointer-events: none;
+      overflow-wrap: break-word;
+    }
+    .accent-deco {
+      position: absolute;
+      left: 62vw;
+      top: 85px;
+      width: 96px; height: 96px;
+      background: radial-gradient(circle at 56% 40%, #2f393d 20%, transparent 70%);
+      border-radius: 50%;
+      z-index: 0;
+      opacity: .25;
+    }
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 0 60px 42px 60px;
+      box-sizing: border-box;
+      min-width: 0;
+    }
+    .footer-left {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+    .footer-left a {
+      color: var(--accent-purple);
+      font-size: 1.7rem;
+      padding: 0;
+      margin: 0 2px;
+      background: none;
+      border-radius: 9px;
+      box-shadow: none;
+      transition: color 0.2s, filter 0.2s;
+      display: flex; align-items: center;
+      position: relative;
+      outline: none;
+    }
+    .footer-left a:hover {
+      color: var(--accent-yellow);
+      filter: drop-shadow(0 5px 8px var(--accent-yellow));
+    }
+    .footer-right {
+      color: var(--accent-purple);
+      font-size: 1.13rem;
+      font-weight: 600;
+      letter-spacing: 1.12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+      max-width: 100%;
+      flex-shrink: 1;
+    }
+    @media (max-width: 1170px) {
+      .circle-bg { width: 265px; height: 265px; }
+      .main-img { width: 160px; height: 160px; }
+      .tagline { font-size: 2rem; max-width: 180px; }
+      .main-right { min-width: 260px; }
+    }
+    @media (max-width: 880px) {
+      .main-content { flex-direction: column; align-items: center; padding: 30px 20px 0 20px; }
+      .main-left { width: 100%; padding-top: 20px; }
+      .main-right { width: 100%; min-width: unset; height: 320px; }
+      .circle-bg { width: 110px; height: 110px; }
+      .main-img { width: 80px; height: 80px; }
+      .tagline { font-size: 1.16rem; max-width: 120px; }
+      .accent-deco { left: 68vw; top: 120px; width: 44px; height: 44px;}
+    }
+    @media (max-width: 600px) {
+      .nav, .footer { padding-left: 10px; padding-right: 10px; }
+      .main-content { padding-left: 6px; }
+      .main-left { font-size: 0.97rem; }
+      .footer { font-size: 0.86rem; }
+      .footer-left { gap: 12px; }
+      .main-right { height: 150px;}
+      .circle-bg { width: 70px; height: 70px; }
+      .main-img { width: 50px; height: 50px; }
+      .tagline { font-size: 1rem; max-width: 95px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="logo">mnmlst.</div>
+    <div class="nav-links">
+      <a href="home.html">HOME</a>
+      <a href="products.html">PRODUCT</a>
+      <a href="store.html">STORE</a>
+      <a href="login.html">Login</a>
+    </div>
+    <div class="menu-icon"><i class="uil uil-bars"></i></div>
+  </nav>
+  <main class="main-content">
+    <section class="main-left">
+      <p>
+        Step into modern minimalism<br>
+        <b>Clean design</b> and <span style="color:#35cde3;font-weight:600;">fresh energy</span>.
+      </p>
+      <a href="discover.html">Discover More</a>
+    </section>
+    <section class="main-right">
+      <div class="circle-bg"></div>
+      <img class="main-img" src="perfume3.jpg" alt="Profile silhouette">
+      <div class="tagline">less is <br> more.</div>
+      <div class="accent-deco"></div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="footer-left">
+      <a href="#" aria-label="Facebook"><i class="uil uil-facebook-f"></i></a>
+      <a href="#" aria-label="Instagram"><i class="uil uil-instagram"></i></a>
+      <a href="#" aria-label="Twitter"><i class="uil uil-twitter"></i></a>
+      <a href="#" aria-label="WhatsApp"><i class="uil uil-whatsapp"></i></a>
+    </div>
+    <div class="footer-right">Arlington heights,IT </div>
+  </footer>
+</body>
+</html>

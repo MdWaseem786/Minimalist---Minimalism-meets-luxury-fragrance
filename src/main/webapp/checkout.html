@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout | mnmlst.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #181921 0%, #24263a 100%);
+      --header-gradient: linear-gradient(90deg, #a28cff 0%, #fae07c 100%);
+      --accent-yellow: #f6be3c;
+      --text-light: #f0f0f0;
+      --text-muted: #aaaac5;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-light);
+      animation: fadeIn 1s ease-in;
+      padding-bottom: 40px;
+    }
+
+    header {
+      padding: 30px 40px;
+      font-size: 2rem;
+      font-weight: bold;
+      background: var(--header-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+      animation: fadeUp 1s ease forwards;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: var(--accent-yellow);
+    }
+
+    .product-list {
+      background: #1e1f2b;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .product-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    .checkout-btn {
+      background: var(--accent-yellow);
+      border: none;
+      padding: 12px 20px;
+      font-weight: bold;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .checkout-btn:hover {
+      background: #ffdd57;
+      color: #222;
+    }
+
+    .upi-info {
+      background: #2a2c3f;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 15px;
+      display: none;
+      animation: fadeIn 0.5s ease-in;
+      text-align: center;
+    }
+
+    .upi-info img {
+      margin-top: 10px;
+      max-width: 200px;
+      border-radius: 8px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <header>mnmlst. | Checkout</header>
+
+  <div class="container">
+    <div class="section">
+      <h2>Order Summary</h2>
+      <div class="product-list" id="order-summary"></div>
+    </div>
+
+    <div class="section">
+      <h2>Delivery Information</h2>
+      <form id="checkout-form" method="post" action="checkout">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="text" id="phone" name="phone" required />
+        </div>
+        <div class="form-group">
+          <label for="address">Full Address</label>
+          <textarea id="address" name="address" rows="4" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="payment">Payment Method</label>
+          <select id="payment" name="payment" required>
+            <option value="">-- Select Method --</option>
+            <option value="cod">Cash on Delivery</option>
+            <option value="upi">UPI</option>
+            <option value="card">Credit/Debit Card</option>
+          </select>
+        </div>
+
+        <div class="upi-info" id="upi-info">
+          <p><strong>UPI ID:</strong> your-upi-id@upi</p>
+          <p><strong>Amount:</strong> ₹<span id="upi-amount">0</span></p>
+          <img id="upi-qr" src="QR_code.jpeg" alt="Scan to Pay">
+        </div>
+
+        <button type="submit" class="checkout-btn">Place Order</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const orderSummary = document.getElementById('order-summary');
+    const paymentSelect = document.getElementById('payment');
+    const upiInfo = document.getElementById('upi-info');
+    const upiAmountElem = document.getElementById('upi-amount');
+
+    // Load cart from localStorage
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let total = 0;
+
+    // Show cart items
+    if (cart.length === 0) {
+      orderSummary.innerHTML = '<p>Your cart is empty.</p>';
+    } else {
+      cart.forEach(product => {
+        const item = document.createElement('div');
+        item.className = 'product-item';
+        item.innerHTML = `<span>${product.name}</span><span>₹${product.price}</span>`;
+        orderSummary.appendChild(item);
+        total += product.price;
+      });
+      const totalItem = document.createElement('div');
+      totalItem.className = 'product-item';
+      totalItem.innerHTML = `<strong>Total</strong><strong>₹${total}</strong>`;
+      orderSummary.appendChild(totalItem);
+    }
+
+    // Show/hide UPI section with QR code
+    paymentSelect.addEventListener('change', () => {
+      if (paymentSelect.value === 'upi') {
+        upiAmountElem.textContent = total;
+        upiInfo.style.display = 'block';
+      } else {
+        upiInfo.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

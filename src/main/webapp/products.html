@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>mnmlst. Scents</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #181921 0%, #24263a 100%);
+      --header-gradient: linear-gradient(90deg, #a28cff 0%, #fae07c 100%);
+      --accent-yellow: #f6be3c;
+      --text-light: #f0f0f0;
+      --text-muted: #aaaac5;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-light);
+      overflow-x: hidden;
+    }
+
+    header {
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 2.3rem;
+      font-weight: 800;
+      background: var(--header-gradient);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav {
+      display: flex;
+      gap: 40px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent-yellow);
+    }
+
+    .home-section {
+      padding: 40px 60px 80px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 80px;
+    }
+
+    .scent-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 60px;
+      animation: fadeUp 1s ease both;
+    }
+
+    .scent-row:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .scent-image {
+      width: 340px;
+      height: 420px;
+      border-radius: 50%;
+      object-fit: cover;
+      filter: brightness(1.1) contrast(1.05);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .scent-image:hover {
+      transform: scale(1.04) rotate(1deg);
+    }
+
+    .scent-text {
+      max-width: 550px;
+    }
+
+    .scent-text h2 {
+      font-size: 2.5rem;
+      background: var(--header-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+
+    .scent-text p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    @keyframes fadeUp {
+      0% {
+        transform: translateY(40px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 900px) {
+      nav {
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .scent-row {
+        flex-direction: column !important;
+        text-align: center;
+      }
+
+      .scent-image {
+        width: 240px;
+        height: 300px;
+      }
+
+      .scent-text h2 {
+        font-size: 2rem;
+      }
+
+      .scent-text {
+        max-width: 100%;
+      }
+
+      .home-section {
+        padding: 30px 20px;
+      }
+
+      header {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">mnmlst.</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="store.html">Collections</a>
+      <a href="discover.html">About</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <section class="home-section">
+    <div class="scent-row">
+      <img src="perfume1.jpg" alt="Flavour One" class="scent-image" />
+      <div class="scent-text">
+        <h2>Amber Drift</h2>
+        <p>
+          A warm and mysterious essence that captures the dusk – subtle hints of amberwood, musk, and citrus peel layered over time for a long-lasting trail. Elegant, refined, and perfectly minimal.
+        </p>
+      </div>
+    </div>
+
+    <div class="scent-row">
+      <img src="perfume2(o).avif" alt="Flavour Two" class="scent-image" />
+      <div class="scent-text">
+        <h2>Coastal Rain</h2>
+        <p>
+          Fresh as ocean mist. This scent evokes crisp mornings, breezy beaches, and the calm of gentle rainfall. Notes of bergamot, sea salt, and lavender to refresh your every mood.
+        </p>
+      </div>
+    </div>
+
+    <div class="scent-row">
+      <img src="velvetrose.jpg" alt="Flavour Three" class="scent-image" />
+      <div class="scent-text">
+        <h2>Velvet Rose</h2>
+        <p>
+          A modern classic. Velvet Rose balances romantic florals with earthy undertones. Perfectly suited for both day and night, it's the signature of someone unforgettable.
+        </p>
+      </div>
+    </div>
+
+    <div class="scent-row">
+      <img src="perfume7.jpg" alt="Flavour Four" class="scent-image" />
+      <div class="scent-text">
+        <h2>Noir Citrus</h2>
+        <p>
+          Minimalism meets edge. A citrus burst layered with smoky wood, this is for the bold. Sharp top notes fade into a smooth, addictive base—like dusk fading into night.
+        </p>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

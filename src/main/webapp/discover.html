@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Discover - mnmlst.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #181921 0%, #24263a 100%);
+      --header-gradient: linear-gradient(90deg, #a28cff 0%, #fae07c 100%);
+      --accent-purple: #7b68ee;
+      --accent-yellow: #f6be3c;
+      --accent-muted: #aaaac5;
+      --text-light: #eaeaea;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-light);
+      line-height: 1.8;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    header {
+      padding: 6rem 2rem 3rem;
+      text-align: center;
+      background: transparent;
+    }
+
+    .brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      background: var(--header-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeInDown 1.2s ease-out;
+    }
+
+    .tagline {
+      font-size: 1.3rem;
+      color: var(--accent-muted);
+      margin-top: 1rem;
+      animation: fadeInUp 1.4s ease-out;
+    }
+
+    section {
+      max-width: 850px;
+      margin: 5rem auto;
+      padding: 0 2rem;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1.2s ease;
+    }
+
+    section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--accent-yellow);
+      margin-bottom: 1.5rem;
+    }
+
+    section p {
+      font-size: 1.15rem;
+      color: var(--text-light);
+      margin-bottom: 2rem;
+      text-align: justify;
+    }
+
+    footer {
+      text-align: center;
+      background: transparent;
+      color: var(--accent-muted);
+      padding: 3rem 1rem;
+      font-size: 0.95rem;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .brand-name {
+        font-size: 2.5rem;
+      }
+      section h2 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="brand-name">mnmlst.</div>
+  <div class="tagline">Refined. Timeless. Unforgettable.</div>
+</header>
+
+<section>
+  <h2>Our Essence</h2>
+  <p>
+    At mnmlst., we believe in the purity of simplicity. Every fragrance we craft is an ode to elegance — not loud, not overpowering, but quietly commanding. Our vision is rooted in the understanding that beauty doesn't shout; it whispers. And in every whisper, there lies a story — a memory, a mood, a moment that lingers.
+  </p>
+  <p>
+    Our perfumers don’t just mix notes — they compose symphonies. With decades of heritage and modern precision, each scent tells its own tale, built on a foundation of timeless ingredients sourced from the world’s most exquisite locations. Our goal is simple yet ambitious: to redefine how the world experiences minimalist luxury.
+  </p>
+</section>
+
+<section>
+  <h2>Promise of Purity</h2>
+  <p>
+    Our promise is rooted in authenticity. We do not chase trends; we curate experiences. Our team ensures every drop is refined to perfection — stripped of unnecessary layers and distractions, distilled down to its raw emotional core. The result is a fragrance that blends with your identity, not masks it.
+  </p>
+  <p>
+    Transparency drives us. We share our sourcing, our methods, and our values because we believe that true beauty comes from honesty. From ethically harvested sandalwood to cruelty-free testing, we maintain integrity across every stage of the process.
+  </p>
+</section>
+
+<section>
+  <h2>Craftsmanship Without Compromise</h2>
+  <p>
+    The soul of mnmlst. lies in its craftsmanship. Our atelier is a blend of old-world perfume mastery and new-world innovation. Every bottle is hand-finished, every blend aged to maturity, every layer designed to unfold gracefully over time.
+  </p>
+  <p>
+    We don’t rush creation. Just like time-honored traditions, our fragrances are born through patience. Each batch is small, focused, and meticulously tested. This isn’t mass production — it’s artistry in motion.
+  </p>
+</section>
+
+<section>
+  <h2>What You Take Home</h2>
+  <p>
+    When you own a mnmlst. perfume, you hold more than a scent. You hold our devotion. Our obsession with detail. Our celebration of silence in a noisy world. From the soft-touch matte glass to the magnetic cap closure, every element has been carefully curated to feel like a treasure in your hands.
+  </p>
+  <p>
+    This isn’t just a perfume — it’s a philosophy you wear. A lifestyle you embrace. A presence that echoes even after you leave the room.
+  </p>
+</section>
+
+<footer>
+  &copy; 2025 mnmlst. All rights reserved. | Elegance in every drop.
+</footer>
+
+<script>
+  const sections = document.querySelectorAll('section');
+  window.addEventListener('scroll', () => {
+    const trigger = window.innerHeight * 0.85;
+    sections.forEach(section => {
+      const sectionTop = section.getBoundingClientRect().top;
+      if (sectionTop < trigger) {
+        section.classList.add('show');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

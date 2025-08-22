@@ -12,3 +12,6 @@ RUN ./mvnw clean package -DskipTests
 
 # Run the JAR file (adjust the path if different)
 CMD ["java", "-jar", "target/app.jar"]
+
+
+Added Dockerfile for deployment
